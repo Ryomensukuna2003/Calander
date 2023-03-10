@@ -1,11 +1,7 @@
 <h1 align="center">Ryomen_sukuna here!</h1>
 
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=ryomensukuna2003&label=Profile%20views&color=e01b24&style=flat-square" alt="ryomensukuna2003" /> </p>
-
 - 🔭 I’m currently working on **Calander**
 
-<h3 align="left">Connect with me:</h3>
-<p align="left">
 </p>
 
 <h3 align="left">Languages and Tools:</h3>
