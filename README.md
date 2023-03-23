@@ -9,4 +9,4 @@
 
 <h3> About project</h3>
 
-![Screenshot from 2023-03-11 01-00-16](https://user-images.githubusercontent.com/112168836/224412500-61904c9b-c01c-4865-aa0f-afd212dc0e53.png)
+![Screenshot from 2023-03-24 02-23-45](https://user-images.githubusercontent.com/112168836/227357245-21c91ab5-affd-4ea6-a966-4b1789dbd665.png)
