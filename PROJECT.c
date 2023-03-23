@@ -1,16 +1,23 @@
+// This code was written by Shivanshu Mishra
+// 19:Mar:2023 | Sun
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <time.h>
+#include <string.h>
 
 //                      「本 物 の 柔 術 を 見 せ て や る」
 
 char *months[]={"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+
 void display_time(){
     time_t t = time(NULL);
     char date[11];
     // string format time
     strftime(date, sizeof(date), "%m-%d-%Y", localtime(&t));
-    printf("\n\n |--[  %s  ]\n |  \n", date);
+    printf("  ____________________________________________________________________");
+
+    printf("\n |\n |--[  %s  ]\n |  \n", date);
     
 }
 
@@ -148,8 +155,61 @@ void birthday(){
 
 }
 
+void addnote(){
+    FILE *fptr;
+    char filename[] = "calendar.txt";
+    char date[11]; 
+    char text[100];
+    
+    fptr = fopen(filename, "a");
+    
+    printf("  |--Enter a date (YYYY-MM-DD): ");
+    scanf("%10s", date);
+    
+    printf("   |\n   |--Enter some text: ");
+    getchar(); 
+    fgets(text, sizeof(text), stdin);
+    
+    fputs(date, fptr);
+    fputs(": ", fptr);
+    fputs(text, fptr);
+    fputs("\n", fptr);
+    fclose(fptr);
+
+    
+}
+
+void shownote(){
+     FILE *fptr;
+    char filename[] = "calendar.txt";
+    char date[11]; // Buffer to hold the date entered by the user
+    char line[100]; // Buffer to hold each line of the file
+    
+    fptr = fopen(filename, "r");
+    
+    printf("  |--Enter a date (YYYY-MM-DD): ");
+    scanf("%10s", date); // Read up to 10 characters to avoid buffer overflow
+    
+    // Loop through each line of the file
+    while (fgets(line, sizeof(line), fptr)) {
+        // Check if the line contains the entered date
+        if (strstr(line, date) != NULL) {
+            char *text = strchr(line, ':') + 2; // Get the text after the date prefix
+            printf("   |\n   |--Text stored on %s: %s", date, text);
+            break;
+        }
+        // else{
+        //     printf("   |--Cheak your date Bro"); 
+        //     break;
+        // }
+    }
+    
+    // Close the file
+    fclose(fptr);
+}
+
 int main(){
-       while(true){
+    while(true){
         display_time();
 
         printf(" |  Enter 1 for Full calander \n");
@@ -157,6 +217,8 @@ int main(){
         printf(" |  Enter 3 for Leap year in range \n");
         printf(" |  Enter 4 for Day at given date \n");
         printf(" |  Enter 5 for Age \n");
+        printf(" |  Enter 6 to Add note \n");
+        printf(" |  Enter 7 to Show note \n");
         printf(" |  CTRL+C to exit ;-)\n");
 
         printf(" |--");
@@ -169,12 +231,15 @@ int main(){
             case 3: leapyear_range(); break;
             case 4: day_of_date(); break;
             case 5: birthday(); break;
-            default:printf(" |--BRO WHAT THE FUCK \n "); break;
+            case 6: addnote(); break;
+            case 7: shownote(); break;
+            default:printf(" |--BRO YOU DO YOU HAVE DIRT IN YOUR EYES \n "); break;
         }
         // for .5s buffer;
         for(int i=0;i<1900000000;i++);
 
         printf("\n");
-        printf("_______________________________________________________________");
+        // printf(" |--------------------------------------------------------------------");
     }
+    
 }
